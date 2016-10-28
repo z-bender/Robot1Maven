@@ -9,28 +9,12 @@
        default-destroy-method="destroyObject"
        default-lazy-init="true"
 >
-    <import resource="DBContext.xml" />
-    <bean id="T1000" class="ru.bender.spring.impls.robot.ModelT1000" scope="singleton"
-          c:_0="Red"
-          c:_1="true"
-          c:_2="2006"
-          p:hand-ref="sonyHand"
-          p:head-ref="sonyHead"
-          p:leg-ref="toshibaLeg"
-          depends-on="db"
-    >
-        <!--<constructor-arg value="Red" index="0" type="java.lang.String"/>-->
-        <!--<constructor-arg value="true" index="1" type="boolean"/>-->
-        <!--<constructor-arg value="2010" index="2" type="int"/>-->
-        <!--<property name="hand" ref="robotHand" />-->
-        <!--<property name="leg" ref="robotLeg" />-->
-        <!--<property name="head" ref="robotHead" />-->
-    </bean>
-    <bean id="sonyLeg" class="ru.bender.spring.impls.sony.SonyLeg" scope="prototype"/>
-    <bean id="sonyHand" class="ru.bender.spring.impls.sony.SonyHand" scope="prototype"/>
-    <bean id="sonyHead" class="ru.bender.spring.impls.sony.SonyHead" scope="prototype"/>
 
-    <bean id="toshibaLeg" class="ru.bender.spring.impls.toshiba.ToshibaLeg"  scope="prototype"/>
-    <bean id="toshibaHand" class="ru.bender.spring.impls.toshiba.ToshibaHand" scope="prototype"/>
-    <bean id="toshibaHead" class="ru.bender.spring.impls.toshiba.ToshibaHead" scope="prototype"/>
-</beans>
+    <import resource="RobotsContext.xml"/>
+
+    <bean id="robotConveyor" class="ru.bender.spring.interfaces.RobotConveyor" scope="singleton">
+        <lookup-method name="createRobot" bean="T1000" />
+    </bean>
+
+
+    </beans>
